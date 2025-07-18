@@ -2,7 +2,7 @@
 	"author": "Codeacula",
 	"authorUrl": "https://codeacula.com",
 	"description": "Rosa, the Obsidian AI Companion for Codeacula",
-	"id": "rosa-obsidian-help",
+	"id": "rosa-obsidian-helper",
 	"isDesktopOnly": false,
 	"minAppVersion": "0.15.0",
 	"name": "Rosa",

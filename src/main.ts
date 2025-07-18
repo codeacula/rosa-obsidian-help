@@ -9,6 +9,8 @@ import {
 	Setting,
 	WorkspaceLeaf,
 } from "obsidian";
+import { createApp } from "vue";
+import VueApp from "./App.vue";
 import { RosaSettings } from "./types";
 import { ROSA_CHAT_VIEW_TYPE, RosaChatView } from "./ui/RosaChatView";
 
@@ -314,3 +316,6 @@ class RosaSettingTab extends PluginSettingTab {
 		);
 	}
 }
+
+import "./style.css";
+createApp(VueApp).mount("#app");
