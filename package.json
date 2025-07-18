@@ -5,11 +5,13 @@
 		"@types/node": "^16.11.6",
 		"@typescript-eslint/eslint-plugin": "5.29.0",
 		"@typescript-eslint/parser": "5.29.0",
+		"@vue/runtime-dom": "^3.2.47",
 		"builtin-modules": "3.3.0",
 		"esbuild": "0.17.3",
 		"obsidian": "latest",
 		"tslib": "2.4.0",
-		"typescript": "4.7.4"
+		"typescript": "4.7.4",
+		"vue": "^3.2.47"
 	},
 	"keywords": [
 		"Rosa",
@@ -19,7 +21,7 @@
 		"Codeacula"
 	],
 	"license": "MIT",
-	"main": "dist/main.js",
+	"main": "main.js",
 	"name": "rosa-obsidian-help",
 	"scripts": {
 		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",

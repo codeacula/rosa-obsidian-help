@@ -50,6 +50,10 @@ export default class RosaPlugin extends Plugin {
 			ROSA_CHAT_VIEW_TYPE,
 			(leaf: WorkspaceLeaf) => new RosaChatView(leaf)
 		);
+		// Open Rosa Chat View in main pane by default
+		const mainLeaf = this.app.workspace.getLeaf(true);
+		mainLeaf.setViewState({ type: ROSA_CHAT_VIEW_TYPE, active: true });
+		this.app.workspace.revealLeaf(mainLeaf);
 
 		// This creates an icon in the left ribbon.
 		const ribbonIconEl = this.addRibbonIcon(

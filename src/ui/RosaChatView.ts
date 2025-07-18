@@ -1,4 +1,7 @@
 import { ItemView, WorkspaceLeaf } from "obsidian";
+// @ts-ignore
+import { createApp } from "vue";
+import ChatApp from "./ChatApp";
 
 export const ROSA_CHAT_VIEW_TYPE = "rosa-chat-view";
 
@@ -22,11 +25,13 @@ export class RosaChatView extends ItemView {
 	async onOpen() {
 		const container = this.containerEl.children[1];
 		container.empty();
-		container.createEl("h4", { text: "Rosa Chat View" });
-		// The Vue app will be mounted here later
+		// Create mount point
+		const mountPoint = container.createDiv({ cls: "rosa-vue-chat" });
+		// Mount Vue app
+		createApp(ChatApp).mount(mountPoint);
 	}
 
 	async onClose() {
-		// Any cleanup, like unmounting the Vue app, will go here
+		// Cleanup if needed
 	}
 }
