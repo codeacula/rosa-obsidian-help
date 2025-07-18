@@ -7,8 +7,10 @@ import {
 	Plugin,
 	PluginSettingTab,
 	Setting,
+	WorkspaceLeaf,
 } from "obsidian";
 import { RosaSettings } from "./types";
+import { ROSA_CHAT_VIEW_TYPE, RosaChatView } from "./ui/RosaChatView";
 
 const DEFAULT_SETTINGS: RosaSettings = {
 	maxTokens: 2000,
@@ -42,6 +44,12 @@ export default class RosaPlugin extends Plugin {
 
 	async onload() {
 		await this.loadSettings();
+
+		// Register custom chat view
+		this.registerView(
+			ROSA_CHAT_VIEW_TYPE,
+			(leaf: WorkspaceLeaf) => new RosaChatView(leaf)
+		);
 
 		// This creates an icon in the left ribbon.
 		const ribbonIconEl = this.addRibbonIcon(
@@ -146,6 +154,17 @@ export default class RosaPlugin extends Plugin {
 		this.registerInterval(
 			window.setInterval(() => console.log("setInterval"), 5 * 60 * 1000)
 		);
+
+		// Add command to open chat view
+		this.addCommand({
+			id: "rosa-open-chat-view",
+			name: "Open Rosa Chat View",
+			callback: () => {
+				const leaf = this.app.workspace.getLeaf(true);
+				leaf.setViewState({ type: ROSA_CHAT_VIEW_TYPE, active: true });
+				this.app.workspace.revealLeaf(leaf);
+			},
+		});
 	}
 
 	onunload() {}
