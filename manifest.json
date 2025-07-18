@@ -1,11 +1,10 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
-	"version": "1.0.0",
+	"author": "Codeacula",
+	"authorUrl": "https://codeacula.com",
+	"description": "Rosa, the Obsidian AI Companion for Codeacula",
+	"id": "rosa-obsidian-help",
+	"isDesktopOnly": false,
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
-	"isDesktopOnly": false
+	"name": "Rosa, Codeacula's Personal Helper",
+	"version": "1.0.0"
 }
