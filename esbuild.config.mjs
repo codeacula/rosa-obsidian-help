@@ -1,5 +1,6 @@
 import builtins from "builtin-modules";
 import esbuild from "esbuild";
+import vuePlugin from "esbuild-plugin-vue";
 import process from "process";
 
 const banner = `/*
@@ -32,12 +33,13 @@ const context = await esbuild.context({
 		"@lezer/lr",
 		...builtins,
 	],
+	plugins: [vuePlugin()],
 	format: "cjs",
 	target: "es2018",
 	logLevel: "info",
 	sourcemap: prod ? false : "inline",
 	treeShaking: true,
-	outfile: "main.js",
+	outfile: "dist/main.js",
 	minify: prod,
 });
 

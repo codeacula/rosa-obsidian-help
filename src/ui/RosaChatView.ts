@@ -1,7 +1,9 @@
 import { ItemView, WorkspaceLeaf } from "obsidian";
 // @ts-ignore
 import { createApp } from "vue";
-import ChatApp from "./ChatApp";
+// Import Vue SFC
+// @ts-ignore
+import ChatApp from "./vue/ChatApp.vue";
 
 export const ROSA_CHAT_VIEW_TYPE = "rosa-chat-view";
 
