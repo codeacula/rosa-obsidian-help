@@ -1,13 +1,13 @@
 import { ItemView, WorkspaceLeaf } from "obsidian";
-// @ts-ignore
-import { createApp } from "vue";
-// Import Vue SFC
-// @ts-ignore
+import { createApp, App as VueApp } from "vue";
 import ChatApp from "./vue/ChatApp.vue";
 
 export const ROSA_CHAT_VIEW_TYPE = "rosa-chat-view";
 
 export class RosaChatView extends ItemView {
+	public newvueApp: VueApp | null = null;
+	private vueRootEl: HTMLElement | null = null;
+
 	constructor(leaf: WorkspaceLeaf) {
 		super(leaf);
 	}
@@ -25,15 +25,30 @@ export class RosaChatView extends ItemView {
 	}
 
 	async onOpen() {
-		const container = this.containerEl.children[1];
+		// Defensive: ensure container exists
+		const container = this.containerEl.children[1] as
+			| HTMLElement
+			| undefined;
+		if (!container) return;
+
 		container.empty();
-		// Create mount point
-		const mountPoint = container.createDiv({ cls: "rosa-vue-chat" });
-		// Mount Vue app
-		createApp(ChatApp).mount(mountPoint);
+
+		// Create and store a reference to the Vue root element
+		this.vueRootEl = container.createEl("div");
+
+		this.newvueApp = createApp(ChatApp);
+		this.newvueApp.mount(this.vueRootEl);
 	}
 
 	async onClose() {
-		// Cleanup if needed
+		if (this.newvueApp) {
+			this.newvueApp.unmount();
+			this.newvueApp = null;
+		}
+		// Optionally, clean up the Vue root element
+		if (this.vueRootEl && this.vueRootEl.parentElement) {
+			this.vueRootEl.parentElement.removeChild(this.vueRootEl);
+			this.vueRootEl = null;
+		}
 	}
 }
